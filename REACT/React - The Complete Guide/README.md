@@ -4,7 +4,7 @@ In this folder you will find all the exercises I did during the course [React - 
 
 ## Folder Content
 
-1. [React Essentials](https://github.com/ToMmAzO/Personal_Training/tree/main/REACT/React%20-%20The%20Complete%20Guide/01%20-%20React%20Essentials/react-essentials)
+1. [React Essentials](/01%20-%20React%20Essentials/react-essentials)
 
 ## How To Use Code Snapshots
 
