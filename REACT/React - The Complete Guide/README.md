@@ -4,7 +4,11 @@ In this folder you will find all the exercises I did during the course [React - 
 
 ## Folder Content
 
-1. [React Essentials](/01%20-%20React%20Essentials/react-essentials)
+1. [React Essentials](/REACT/React%20-%20The%20Complete%20Guide/01%20-%20React%20Essentials/react-essentials)<br>
+   This project is a simple React application designed to showcase the basic building blocks of React development  such as Components, JSX, Props, State, and more.
+
+2. [Essentials Deep Dive - Tic Tac Toe](/REACT/React%20-%20The%20Complete%20Guide/02%20-%20Essentials%20Deep%20Dive/tic-tac-toe)<br>
+   This project is a React implementation of the traditional Tic-Tac-Toe game, designed to be easy to understand and fun to play.
 
 ## How To Use Code Snapshots
 
