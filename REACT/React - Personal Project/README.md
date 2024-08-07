@@ -10,6 +10,9 @@ In this folder, you will find all my work inspired by various interesting concep
 2. [Sudoku](/REACT/React%20-%20Personal%20Project/02%20-%20Sudoku/sudoku)<br>
    This application allows you to play Sudoku puzzles with three levels of difficulty: Easy, Medium, and Hard.
 
+3. [Magic Memory](/REACT/React%20-%20Personal%20Project/03%20-%20Magic%20Memory/magic-memory)<br>
+   Magic Memory is a React-based web application designed to enhance your memory skills while having fun! The game challenges players to match pairs of cards within a specified time frame.
+
 ## How To Use Code Snapshots
 
 Of course, you can also try running those code snapshots on your machine. You'll need to run `npm install` in the individual snapshot folders, followed by `npm start` to start the development server.
