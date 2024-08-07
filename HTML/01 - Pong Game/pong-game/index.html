@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pong game</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      h1 {
+        color: #fff;
+        font-family: sans-serif;
+        font-size: 3rem;
+        position: absolute;
+        bottom: 100px;
+      }
+
+      #player1Score {
+        left: 35%;
+      }
+
+      #player2Score {
+        right: 35%;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <h1 id="player1Score">0</h1>
+    <h1 id="player2Score">0</h1>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const keysPressed = [];
+      const KEY_UP = 38;
+      const KEY_DOWN = 40;
+
+      window.addEventListener("keydown", function (e) {
+        keysPressed[e.keyCode] = true;
+      });
+
+      window.addEventListener("keyup", function (e) {
+        keysPressed[e.keyCode] = false;
+      });
+
+      function vec2(x, y) {
+        return { x: x, y: y };
+      }
+
+      function Ball(position, velocity, radius) {
+        this.position = position;
+        this.velocity = velocity;
+        this.radius = radius;
+
+        this.update = function () {
+          this.position.x += this.velocity.x;
+          this.position.y += this.velocity.y;
+        };
+
+        this.draw = function () {
+          ctx.fillStyle = "#33ff00";
+          ctx.strokeStyle = "#33ff00";
+          ctx.beginPath();
+          ctx.arc(
+            this.position.x,
+            this.position.y,
+            this.radius,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+          ctx.stroke();
+        };
+      }
+
+      function Paddle(position, velocity, width, height) {
+        this.position = position;
+        this.velocity = velocity;
+        this.width = width;
+        this.height = height;
+        this.score = 0;
+
+        this.update = function () {
+          if (keysPressed[KEY_UP]) {
+            this.position.y -= this.velocity.y;
+          }
+
+          if (keysPressed[KEY_DOWN]) {
+            this.position.y += this.velocity.y;
+          }
+        };
+
+        this.draw = function () {
+          ctx.fillStyle = "#33ff00";
+          ctx.fillRect(
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+          );
+        };
+
+        this.getHalfWidth = function () {
+          return this.width / 2;
+        };
+
+        this.getHalfHeight = function () {
+          return this.height / 2;
+        };
+
+        this.getCenter = function () {
+          return vec2(
+            this.position.x + this.getHalfWidth(),
+            this.position.y + this.getHalfHeight()
+          );
+        };
+      }
+
+      function ballCollisionWithEdges(ball) {
+        if (ball.position.y + ball.radius >= canvas.height) {
+          ball.velocity.y *= -1;
+        }
+
+        // if (ball.position.x + ball.radius >= canvas.width) {
+        //   ball.velocity.x *= -1;
+        // }
+
+        if (ball.position.y - ball.radius <= 0) {
+          ball.velocity.y *= -1;
+        }
+
+        // if (ball.position.x - ball.radius <= 0) {
+        //   ball.velocity.x *= -1;
+        // }
+      }
+
+      function paddleCollisionWithEdges(paddle) {
+        if (paddle.position.y <= 0) {
+          paddle.position.y = 0;
+        }
+
+        if (paddle.position.y + paddle.height >= canvas.height) {
+          paddle.position.y = canvas.height - paddle.height;
+        }
+      }
+
+      function ballPaddleCollision(ball, paddle) {
+        let dx = Math.abs(ball.position.x - paddle.getCenter().x);
+        let dy = Math.abs(ball.position.y - paddle.getCenter().y);
+
+        if (
+          dx <= ball.radius + paddle.getHalfWidth() &&
+          dy <= ball.radius + paddle.getHalfHeight()
+        ) {
+          ball.velocity.x *= -1;
+        }
+      }
+
+      function player2AI(ball, paddle) {
+        if (ball.velocity.x > 0) {
+          if (ball.position.y >= paddle.position.y) {
+            paddle.position.y += paddle.velocity.y;
+          }
+
+          if (ball.position.y < paddle.position.y) {
+            paddle.position.y -= paddle.velocity.y;
+          }
+        }
+      }
+
+      function respawnBall(ball) {
+        if (ball.velocity.x > 0) {
+          ball.position.x = canvas.width - 150;
+          ball.position.y = Math.random() * (canvas.height - 200) + 100;
+        }
+
+        if (ball.velocity.x < 0) {
+          ball.position.x = 150;
+          ball.position.y = Math.random() * (canvas.height - 200) + 100;
+        }
+
+        ball.velocity.x *= -1;
+        ball.velocity.y *= -1;
+      }
+
+      function increaseScore(ball, paddle1, paddle2) {
+        if (ball.position.x <= -ball.radius) {
+          paddle2.score += 1;
+          document.getElementById("player2Score").innerHTML = paddle2.score;
+          respawnBall(ball);
+        }
+
+        if (ball.position.x >= canvas.width + ball.radius) {
+          paddle1.score += 1;
+          document.getElementById("player1Score").innerHTML = paddle1.score;
+          respawnBall(ball);
+        }
+      }
+
+      function drawGameScene() {
+        ctx.strokeStyle = "#ffff00";
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(0, 0);
+        ctx.lineTo(canvas.width, 0);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(0, canvas.height);
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(canvas.width, 0);
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      const ball = new Ball(vec2(200, 200), vec2(10, 10), 20);
+      const paddle1 = new Paddle(vec2(0, 50), vec2(15, 15), 20, 160);
+      const paddle2 = new Paddle(
+        vec2(canvas.width - 20, 30),
+        vec2(15, 15),
+        20,
+        160
+      );
+
+      function gameUpdate() {
+        ball.update();
+        paddle1.update();
+        player2AI(ball, paddle2);
+
+        ballCollisionWithEdges(ball);
+        paddleCollisionWithEdges(paddle1);
+        paddleCollisionWithEdges(paddle2);
+
+        ballPaddleCollision(ball, paddle1);
+        ballPaddleCollision(ball, paddle2);
+
+        increaseScore(ball, paddle1, paddle2);
+      }
+
+      function gameDraw() {
+        drawGameScene();
+
+        ball.draw();
+        paddle1.draw();
+        paddle2.draw();
+      }
+
+      function gameLoop() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        window.requestAnimationFrame(gameLoop);
+
+        gameUpdate();
+        gameDraw();
+      }
+
+      gameLoop();
+    </script>
+  </body>
+</html>
