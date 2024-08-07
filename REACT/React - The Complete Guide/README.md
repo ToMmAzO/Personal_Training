@@ -16,6 +16,9 @@ In this folder you will find all the exercises I did during the course [React - 
 4. [Styling React Components - ReactArt Log in](/REACT/React%20-%20The%20Complete%20Guide/04%20-%20Styling%20React%20Components/reactart-login)<br>
    This project is a simple React application created to practice and showcase styling of React components.
 
+5. [Refs & Portals - Final Countdown](/REACT/React%20-%20The%20Complete%20Guide/05%20-%20Refs%20&%20Portals/final-countdown)<br>
+   This app allows users to create countdowns for various events, keeping track of time until the event occurs.
+
 ## How To Use Code Snapshots
 
 Of course, you can also try running those code snapshots on your machine. You'll need to run `npm install` in the individual snapshot folders, followed by `npm run dev` to start the development server.
