@@ -22,6 +22,9 @@ In this folder you will find all the exercises I did during the course [React - 
 6. [Practice Project - Project Management](/REACT/React%20-%20The%20Complete%20Guide/06%20-%20Practice%20Project/project-management)<br>
    This is a simple project management application built using React. It allows users to create, view, update, and delete projects.
 
+7. [Advanced State Management - Elegant Context](/REACT/React%20-%20The%20Complete%20Guide/07%20-%20Advanced%20State%20Management/elegant-context)<br>
+   This is a React-based e-commerce application designed to provide users with a convenient platform for purchasing products online.
+
 ## How To Use Code Snapshots
 
 Of course, you can also try running those code snapshots on your machine. You'll need to run `npm install` in the individual snapshot folders, followed by `npm run dev` to start the development server.
