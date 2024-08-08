@@ -28,6 +28,9 @@ In this folder you will find all the exercises I did during the course [React - 
 8. [Side Effects - Place Picker](/REACT/React%20-%20The%20Complete%20Guide/08%20-%20Side%20Effects/place-picker)<br>
    This is a user-friendly application designed to help you select your next destination. Based on your current location, the app proposes various destinations sorted by proximity, allowing you to easily discover and choose the perfect spot for your next getaway.
 
+9. [Practice Project - React Quiz](/REACT/React%20-%20The%20Complete%20Guide/09%20-%20Practice%20Project/react-quiz)<br>
+   This is a simple web application built with React that presents users with multiple-choice questions. It’s designed to provide an engaging way to test knowledge on various topics.
+
 
 ## How To Use Code Snapshots
 
