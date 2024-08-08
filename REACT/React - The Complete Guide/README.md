@@ -25,6 +25,10 @@ In this folder you will find all the exercises I did during the course [React - 
 7. [Advanced State Management - Elegant Context](/REACT/React%20-%20The%20Complete%20Guide/07%20-%20Advanced%20State%20Management/elegant-context)<br>
    This is a React-based e-commerce application designed to provide users with a convenient platform for purchasing products online.
 
+8. [Side Effects - Place Picker](/REACT/React%20-%20The%20Complete%20Guide/08%20-%20Side%20Effects/place-picker)<br>
+   This is a user-friendly application designed to help you select your next destination. Based on your current location, the app proposes various destinations sorted by proximity, allowing you to easily discover and choose the perfect spot for your next getaway.
+
+
 ## How To Use Code Snapshots
 
 Of course, you can also try running those code snapshots on your machine. You'll need to run `npm install` in the individual snapshot folders, followed by `npm run dev` to start the development server.
