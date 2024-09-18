@@ -5,7 +5,7 @@ In this folder you will find all the exercises I did during the course [React - 
 ## Folder Content
 
 1. [React Essentials](/REACT/React%20-%20The%20Complete%20Guide/01%20-%20React%20Essentials/react-essentials)<br>
-   This project is a simple React application designed to showcase the basic building blocks of React development  such as Components, JSX, Props, State, and more.
+   This project is a simple React application designed to showcase the basic building blocks of React development such as Components, JSX, Props, State, and more.
 
 2. [Essentials Deep Dive - Tic Tac Toe](/REACT/React%20-%20The%20Complete%20Guide/02%20-%20Essentials%20Deep%20Dive/tic-tac-toe)<br>
    This project is a React implementation of the traditional Tic-Tac-Toe game, designed to be easy to understand and fun to play.
@@ -31,6 +31,8 @@ In this folder you will find all the exercises I did during the course [React - 
 9. [Practice Project - React Quiz](/REACT/React%20-%20The%20Complete%20Guide/09%20-%20Practice%20Project/react-quiz)<br>
    This is a simple web application built with React that presents users with multiple-choice questions. It’s designed to provide an engaging way to test knowledge on various topics.
 
+10. [Behind The Scenes - Simple Counter](/REACT/React%20-%20The%20Complete%20Guide/10%20-%20Behind%20The%20Scenes/simple-counter)<br>
+    This project is a simple React application designed to give a look behind the scenes and at optimization techniques.
 
 ## How To Use Code Snapshots
 
